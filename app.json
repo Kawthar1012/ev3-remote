@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "ev3-remote",
+    "slug": "ev3-remote",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "ev3-remote"
+}
