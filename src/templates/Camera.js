@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Button, Image } from "react-native-web";
+import { Button, Image } from "react-native";
 
 const Camera = ({navigation}) => {
     return (

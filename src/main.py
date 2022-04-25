@@ -1,14 +1,20 @@
 from flask import Flask, render_template, Response
-from camera import VideoCamera
-import socket
 import sys
-import time
+from server import Server
 
 app = Flask(__name__)
+
+server = Server("http://localhost")
 
 @app.route('/')
 def index():
     return render_template('index.js')
+
+@app.before_first_request
+def before_request_func():
+    global client
+    client = server.start()
+    return "ok"
     
 def gen(camera):
     while True:
@@ -22,15 +28,18 @@ def video_feed():
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
+@app.route('/<path:path>')
+def dir(path):
+    print("called ",path)
+    server.send_msg(path,client)
+    #client.close()
+    print("done")
+    return "ok"
 
-#@app.route('/left')
-# def left():
- #   s.sendall(b"Left")
-
-#@app.route('/right')
-# def right():
-#    s.sendall(b"Right")
-                    
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, threaded=True, use_reloader=False)
+
+    app.run(host='localhost', port=5000, threaded=True, use_reloader=False)
     
+    
+    
+

@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Button, Image } from "react-native-web";
+import { Button, Image } from "react-native";
+import Boxes from "./Boxes";
+import Header from "./Header";
 
-const Robot = ({navigation, direction}) => {
+const Robot = ({route, navigation}) => {
+    const direction = route.params.direction;
+    const final = "";
+    const url = "http://localhost:5000/"+direction;
+    console.log(direction)
+
     return (
     <View style={styles.container}>
-       <Image
-        source={{uri:"http://localhost:5000/left" }} 
+    <Image
+        source={{uri:url }} 
         style = {{ width: 0, height: 0 }}
        />
-       <Text>Conveyor has moved {{direction}}</Text>
-       <View>
-       <Button title='Go back' onPress={() => navigation.navigate('Home')}/>
-        </View>
-    </View>
+      <Header />
+      <Boxes navigation={navigation}/>
+      </View>
      );
     };
     

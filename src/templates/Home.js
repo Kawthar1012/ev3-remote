@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import Header from './Header';
 import Boxes from './Boxes';
-import { Button } from 'react-native-web';
+
 
 
 const Home = ({navigation}) => {
